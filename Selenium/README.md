@@ -17,7 +17,8 @@
     }
     ```
   
-    This subclass simplifies this workflow by 10 fold. Here is how you would accomplish the same thing:
+    This subclass simplifies this workflow by ten fold. Here is how you would accomplish the same 
+    thing five different ways:
     ```CS
     using (ExtendedChromeDriver driver = new ExtendedChromeDriver())
     {

@@ -46,7 +46,7 @@
   }
   ```
   
-  OR
+  Or another way:
   ```CS
   using (ExtendedChromeDriver driver = new ExtendedChromeDriver)
   {

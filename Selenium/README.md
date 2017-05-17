@@ -47,12 +47,11 @@
   ```
   
   Or another way:
-  ```CS
+
   using (ExtendedChromeDriver driver = new ExtendedChromeDriver)
   {
     List<Table> table = driver.AwaitElements(By.TagName("table")).ToList();
   }
-  ```
   
   Same goes for clicking on an element. Sometimes with Selenium, an element will be located 
   on the page, but it will not be clickable, and will throw an exception.

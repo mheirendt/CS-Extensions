@@ -88,5 +88,5 @@
     ```
     
     The ExtendedChromeDriver does this for you upon instantiation with no need to pass ChromeOptions
-    as parameter.
+    as a parameter.
   

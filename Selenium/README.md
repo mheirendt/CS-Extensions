@@ -1,6 +1,6 @@
 <b>Subclasses and Helper methods for Selenium Remote Web Driver</b>
 
-<i>ExtendedChromeDriver.cs</i>
+* <i>ExtendedChromeDriver.cs</i>
   Simplifies the code you need to write to be able to test or scrape web pages.
   With the Selenium remote web driver, in order to iterate through the rows of each HTML table,
   you would need to do something like this:
@@ -15,6 +15,7 @@
     }
   }
   ```
+  
   This subclass simplifies this workflow by 10 fold. Here is how you would accomplish the same thing:
   ```CS
   using (ExtendedChromeDriver driver = new ExtendedChromeDriver())
@@ -36,6 +37,7 @@
     List<Table> table = driver.FindElements(By.TagName("table")).ToList();
   }
   ```
+  
   Here is how you would accomplish the same thing with the subclass:
   ```CS
   using (ExtendedChromeDriver driver = new ExtendedChromeDriver)
@@ -43,6 +45,7 @@
     List<Table> table = driver.Tables;
   }
   ```
+  
   OR
   ```CS
   using (ExtendedChromeDriver driver = new ExtendedChromeDriver)
@@ -50,6 +53,7 @@
     List<Table> table = driver.AwaitElements(By.TagName("table")).ToList();
   }
   ```
+  
   Same goes for clicking on an element. Sometimes with Selenium, an element will be located 
   on the page, but it will not be clickable, and will throw an exception.
   Here is how you would normally have to handle the situation:

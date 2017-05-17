@@ -75,4 +75,17 @@
       driver.AwaitClick(By.Id("idOfTheButtonOrLink"));
     }
     ```
+    
+  * Automating the testing of websites / scraping data occasionally requires that you download
+    images / documents instead of opening them in the defaut browser previewer.
+    Here is how you would have to configure the driver each time you create it:
+    ```CS
+    ChromeOptions options = new ChromeOptions()
+    options.AddUserProfilePreference("plugins.always_open_pdf_externally", true);
+    
+    using (ChromeDriver driver = new ChromeDriver(options))
+    { ....
+    ```
+    
+    The ExtendedChromeDriver does this for you upon instantsiation with no need to pass options.
   

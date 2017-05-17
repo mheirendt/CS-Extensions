@@ -47,7 +47,6 @@
   ```
   
   OR
-  
   ```CS
   using (ExtendedChromeDriver driver = new ExtendedChromeDriver)
   {

@@ -87,5 +87,6 @@
     { ....
     ```
     
-    The ExtendedChromeDriver does this for you upon instantsiation with no need to pass options.
+    The ExtendedChromeDriver does this for you upon instantiation with no need to pass ChromeOptions
+    as parameter.
   

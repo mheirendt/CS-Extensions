@@ -3,7 +3,7 @@
 * <b>ExtendedChromeDriver.cs</b>
 
   Simplifies the code you need to write to be able to test or scrape web pages.
-  With the Selenium remote web driver, in order to iterate through the rows of each HTML table,
+  *With the Selenium remote web driver, in order to iterate through the rows of each HTML table,
   you would need to do something like this:
   ```CS
   using (ChromeDriver driver = new ChromeDriver())
@@ -28,7 +28,7 @@
     string html = table.Rows[0].Cells[0].Html;
   }
   ```
-  I also noticed an annoying issue with Selenium is that there is no helper method for waiting for the 
+  *I also noticed an annoying issue with Selenium is that there is no helper method for waiting for the 
   page, or an element to load. Here is what you would have to do to wait for an element to appear in the web page:
   ```CS
   using (ChromeDriver driver = new ChromeDriver())
@@ -55,7 +55,7 @@
   }
   ```
   
-  Same goes for clicking on an element. Sometimes with Selenium, an element will be located 
+  *Same goes for clicking on an element. Sometimes with Selenium, an element will be located 
   on the page, but it will not be clickable, and will throw an exception.
   Here is how you would normally have to handle the situation:
   ```CS

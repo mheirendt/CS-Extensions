@@ -34,24 +34,25 @@
   {
     WebDriverWait wait = new WebDriverWait(this, new TimeSpan(30 * TimeSpan.TicksPerSecond));
     wait.Until(ExpectedConditions.PresenceOfAllElementsLocatedBy(By.TagName("table")));
-    List<Table> table = driver.FindElements(By.TagName("table")).ToList();
+    List<Table> tables = driver.FindElements(By.TagName("table")).ToList();
   }
   ```
   
   Here is how you would accomplish the same thing with the subclass:
   ```CS
-  using (ExtendedChromeDriver driver = new ExtendedChromeDriver)
+  using (ExtendedChromeDriver driver = new ExtendedChromeDriver())
   {
-    List<Table> table = driver.Tables;
+    List<Table> tables = driver.Tables;
   }
   ```
   
   Or another way:
-
-  using (ExtendedChromeDriver driver = new ExtendedChromeDriver)
-  {
-    List<Table> table = driver.AwaitElements(By.TagName("table")).ToList();
-  }
+  ```CS
+  using (ExtendedChromeDriver = new ExtendedChromeDriver())
+  {
+    List<Table> tables = driver.AwaitElements(By.TagName("table"));
+  }
+  ```
   
   Same goes for clicking on an element. Sometimes with Selenium, an element will be located 
   on the page, but it will not be clickable, and will throw an exception.
@@ -67,7 +68,7 @@
   ```
   The implementation is much more simple with ExtendedChromeDriver:
   ```CS
-  using (ExtendedChromeDriver driver = new ExtendedChromeDriver)
+  using (ExtendedChromeDriver driver = new ExtendedChromeDriver())
   {
     driver.AwaitClick(By.Id("idOfTheButtonOrLink"));
   }

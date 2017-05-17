@@ -22,7 +22,7 @@
     ```CS
     using (ExtendedChromeDriver driver = new ExtendedChromeDriver())
     {
-      Table table = driver.Document.Tables[0];
+      Table table = driver.Tables[0];
       List<TableRow> tableRows = table.Rows;
       List<TableCells> tableCells = tableRows.Cells;
       string text = table.Rows[0].Cells[0].Text;

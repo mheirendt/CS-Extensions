@@ -1,4 +1,4 @@
-<h1>Subclasses and Helper methods for [Selenium](http://docs.seleniumhq.org/)</h1>
+<h1>Subclasses and Helper methods for [`Selenium`](#http://docs.seleniumhq.org/)</h1>
 
 * <b>Chrome Driver</b>
 

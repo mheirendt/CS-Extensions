@@ -13,16 +13,6 @@ public class ExtendedChromeDriver : ChromeDriver
     /// Contains a reference to the base element of the web page for ease of access
     /// </summary>
     public BaseElement Document { get; private set; }
-    /// <summary>
-    /// Returns a List<IWebElement> of all tables on the web page
-    /// </summary>
-    public List<Table> Tables
-    {
-        get
-        {
-            return this.AwaitElements(By.TagName("table")).Select(x => new Table(x)).ToList();
-        }
-    }
     #endregion
     #region constructors
     /// <summary>

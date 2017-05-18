@@ -1,5 +1,4 @@
-<h2>ubclasses and Helper methods for [Selenium](http://docs.seleniumhq.org)</h2>
-[Selenium](http://docs.seleniumhq.org)
+<b>Subclasses and Helper methods for [Selenium](http://docs.seleniumhq.org)</b>
 
 * <b>Chrome Driver</b>
 

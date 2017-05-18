@@ -1,4 +1,4 @@
-<b>Subclasses and Helper methods for Selenium Remote Web Driver</b>
+<h1>Subclasses and Helper methods for Selenium Remote Web Driver</h1>
 
 * <b>Chrome Driver</b>
 

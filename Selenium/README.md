@@ -1,6 +1,6 @@
 <b>Subclasses and Helper methods for Selenium Remote Web Driver</b>
 
-* <b>ExtendedChromeDriver.cs</b>
+* <b>Chrome Driver</b>
 
   Simplifies the code you need to write to be able to test or scrape web pages.
   * With the Selenium remote web driver, in order to iterate through the rows of each HTML table,

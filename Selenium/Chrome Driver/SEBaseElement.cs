@@ -27,14 +27,14 @@ namespace Tobin.EFD.Server.BusinessLogic.Websites
             }
         }
         /// <summary>
-        /// Returns the innerHtml of the element
+        /// Returns the innerHTML of the element
         /// </summary>
         public string Html
         {
             get
             {
                 this.checkElement();
-                return this.element.GetAttribute("innerHtml");
+                return this.element.GetAttribute("innerHTML");
             }
         }
         /// <summary>
@@ -68,17 +68,6 @@ namespace Tobin.EFD.Server.BusinessLogic.Websites
             {
                 this.checkElement();
                 return this.element.FindElements(By.TagName("a")).Select(x => new SELink(x)).ToList();
-            }
-        }
-        /// <summary>
-        /// Returns a list of all the urls within the element
-        /// </summary>
-        public List<string> Urls
-        {
-            get
-            {
-                this.checkElement();
-                return this.element.FindElements(By.TagName("a")).Select(x => x.GetAttribute("href")).ToList();
             }
         }
         /// <summary>

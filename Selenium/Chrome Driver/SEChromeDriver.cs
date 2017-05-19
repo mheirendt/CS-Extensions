@@ -5,7 +5,6 @@ using OpenQA.Selenium;
 using OpenQA.Selenium.Chrome;
 using OpenQA.Selenium.Support.UI;
 using OpenQA.Selenium.Remote;
-using Tobin.EFD.Common;
 
 namespace Tobin.EFD.Server.BusinessLogic.Websites
 {
@@ -57,40 +56,6 @@ namespace Tobin.EFD.Server.BusinessLogic.Websites
         }
         #endregion
         #region public methods
-
-        /// <summary>
-        /// Instantiate a webpage inheriting from BasePage and bind the driver to the base class
-        /// </summary>
-        /// <typeparam name="T"></typeparam>
-        /// <returns></returns>
-        public virtual T Page<T>() where T : new()
-        {
-            if (typeof(T).BaseType != typeof(BasePage))
-                throw new ArgumentException("The object being initialized must inherit from the class BasePage");
-
-            T page = new T();
-            BasePage basePage = page as BasePage;
-            basePage.SetDriver(this);
-            return page;
-        }
-
-
-        /// <summary>
-        /// Instantiate a webpage inheriting from BasePage and bind the driver to the base class, and navigate to the given url
-        /// </summary>
-        /// <typeparam name="T"></typeparam>
-        /// <returns></returns>
-        public virtual T Page<T>(string url) where T : new()
-        {
-            if (typeof(T).BaseType != typeof(BasePage))
-                throw new ArgumentException("The object being initialized must inherit from the class BasePage");
-
-            T page = new T();
-            var basePage = page as BasePage;
-            basePage.SetDriver(this);
-            this.GoToUrl(url);
-            return page;
-        }
 
 
         /// <summary>

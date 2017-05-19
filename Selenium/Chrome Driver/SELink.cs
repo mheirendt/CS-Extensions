@@ -6,6 +6,9 @@ namespace Tobin.EFD.Server.BusinessLogic.Websites
     public class SELink : SEBaseElement
     {
         #region public properties
+        /// <summary>
+        /// Returns the url of the link
+        /// </summary>
         public string Url
         {
             get
@@ -16,14 +19,14 @@ namespace Tobin.EFD.Server.BusinessLogic.Websites
         #endregion
         #region constructors
         /// <summary>
-        /// Instantiate a Link from an IWebElement with the tag name "link"
+        /// Instantiate an SELink from an IWebElement with the tag name "a"
         /// </summary>
         /// <param name="element"></param>
         public SELink(IWebElement element) : base(element)
         {
             string tagName = element.TagName;
-            if (null == tagName || !"input".Equals(tagName.ToLower()))
-                throw new UnexpectedTagNameException("input", tagName);
+            if (null == tagName || !"a".Equals(tagName.ToLower()))
+                throw new UnexpectedTagNameException("a", tagName);
         }
         #endregion
     }

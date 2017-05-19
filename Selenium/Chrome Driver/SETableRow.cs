@@ -18,11 +18,27 @@ namespace Tobin.EFD.Server.BusinessLogic.Websites
         {
             get
             {
-                return this.element.FindElements(By.TagName("td")).Select(x => new SETableCell(x)).ToList();
+                return this.element.FindElements(By.TagName("td")).Select((x, i) => new SETableCell(x, i)).ToList();
             }
         }
+        /// <summary>
+        /// Returns the Zero based position of the row in the table
+        /// </summary>
+        public int Row { get; private set; }
         #endregion
         #region constructors
+        /// <summary>
+        /// Instantiate a SETableRow from an IWebElement with the tag name "tr" and sets the position property
+        /// </summary>
+        /// <param name="element"></param>
+        public SETableRow(IWebElement element, int index) : base(element)
+        {
+            string tagName = element.TagName;
+            if (null == tagName || !"tr".Equals(tagName.ToLower()))
+                throw new UnexpectedTagNameException("tr", tagName);
+
+            this.Row = index;
+        }
         /// <summary>
         /// Instantiate a SETableRow from an IWebElement with the tag name "tr"
         /// </summary>

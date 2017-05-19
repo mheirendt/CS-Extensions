@@ -18,7 +18,7 @@ namespace Tobin.EFD.Server.BusinessLogic.Websites
         {
             get
             {
-                return this.element.FindElements(By.TagName("tr")).Select(x => new SETableRow(x)).ToList();
+                return this.element.FindElements(By.TagName("tr")).Select((x, i) => new SETableRow(x, i)).ToList();
             }
         }
         #endregion

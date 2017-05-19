@@ -1,15 +1,11 @@
-using System;
-using System.Linq;
-using System.Collections.Generic;
-using OpenQA.Selenium;
-using OpenQA.Selenium.Chrome;
-using OpenQA.Selenium.Support.UI;
-using OpenQA.Selenium.Remote;
+﻿using OpenQA.Selenium.Chrome;
 
-class ExtendedChromeOptions : ChromeOptions
+namespace Tobin.EFD.Server.BusinessLogic.Websites
+{
+    class SEChromeOptions : ChromeOptions
     {
         #region constructors
-        public ExtendedChromeOptions() : base()
+        public SEChromeOptions() : base()
         {
             // The chrome driver instantiates a new user profile for each session. To auto
             // download PDF images, you must manually set the user preference to true
@@ -23,3 +19,4 @@ class ExtendedChromeOptions : ChromeOptions
         }
         #endregion
     }
+}

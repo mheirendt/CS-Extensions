@@ -1,25 +1,24 @@
-using System;
+﻿using System.Collections.Generic;
 using System.Linq;
-using System.Collections.Generic;
 using OpenQA.Selenium;
-using OpenQA.Selenium.Chrome;
 using OpenQA.Selenium.Support.UI;
-using OpenQA.Selenium.Remote;
 
-/// <summary>
-/// Object model to be bound to table elements with the Selenium Remote Web Driver
-/// </summary>
-public class Table : BaseElement
+namespace Tobin.EFD.Server.BusinessLogic.Websites
+{
+    /// <summary>
+    /// Object model to be bound to table elements with the Selenium Remote Web Driver
+    /// </summary>
+    public class SETable : SEBaseElement
     {
         #region public properties
         /// <summary>
-        /// Get a List<TableRows> of all the rows within the table
+        /// Returns a list of all the rows within the table
         /// </summary>
-        public List<TableRow> Rows
+        public List<SETableRow> Rows
         {
             get
             {
-                return this.element.FindElements(By.TagName("tr")).Select(x => new TableRow(x)).ToList();
+                return this.element.FindElements(By.TagName("tr")).Select(x => new SETableRow(x)).ToList();
             }
         }
         #endregion
@@ -28,7 +27,7 @@ public class Table : BaseElement
         /// Instantiate a new Table from an IWebElement with the tag name "table"
         /// </summary>
         /// <param name="element"></param>
-        public Table(IWebElement element) : base(element)
+        public SETable(IWebElement element) : base(element)
         {
             string tagName = element.TagName;
             if (null == tagName || !"table".Equals(tagName.ToLower()))
@@ -36,3 +35,4 @@ public class Table : BaseElement
         }
         #endregion
     }
+}

@@ -1,21 +1,18 @@
-using System;
-using System.Linq;
-using System.Collections.Generic;
-using OpenQA.Selenium;
-using OpenQA.Selenium.Chrome;
+﻿using OpenQA.Selenium;
 using OpenQA.Selenium.Support.UI;
-using OpenQA.Selenium.Remote;
-	
-	/// <summary>
+
+namespace Tobin.EFD.Server.BusinessLogic.Websites
+{
+    /// <summary>
     /// Object model to be bound to table cell elements with the Selenium Remote Web Driver
     /// </summary>
-    public class TableCell : BaseElement
+    public class SETableCell : SEBaseElement
     {
         #region constructors
         /// <summary>
-        /// Instantiate a TableCell from an IWebElement with the tag name "td"
+        /// Instantiate a SETableCell from an IWebElement with the tag name "td"
         /// </summary>
-        public TableCell(IWebElement element) : base(element)
+        public SETableCell(IWebElement element) : base(element)
         {
             string tagName = element.TagName;
             if (null == tagName || !"td".Equals(tagName.ToLower()))
@@ -23,3 +20,4 @@ using OpenQA.Selenium.Remote;
         }
         #endregion
     }
+}

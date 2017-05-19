@@ -1,35 +1,33 @@
-
-using System;
+﻿using System.Collections.Generic;
 using System.Linq;
-using System.Collections.Generic;
 using OpenQA.Selenium;
-using OpenQA.Selenium.Chrome;
 using OpenQA.Selenium.Support.UI;
-using OpenQA.Selenium.Remote;
-	
-	/// <summary>
+
+namespace Tobin.EFD.Server.BusinessLogic.Websites
+{
+    /// <summary>
     /// Object model to be bound to table row elements with the Selenium Remote Web Driver
     /// </summary>
-    public class TableRow : BaseElement
+    public class SETableRow : SEBaseElement
     {
         #region public properties
         /// <summary>
-        /// Get a List<TableCell> of all the cells within the table row
+        /// Get a List<SETableCell> of all the cells within the table row
         /// </summary>
-        public List<TableCell> Cells
+        public List<SETableCell> Cells
         {
             get
             {
-                return this.element.FindElements(By.TagName("td")).Select(x => new TableCell(x)).ToList();
+                return this.element.FindElements(By.TagName("td")).Select(x => new SETableCell(x)).ToList();
             }
         }
         #endregion
         #region constructors
         /// <summary>
-        /// Instantiate a TableRow from an IWebElement with the tag name "tr"
+        /// Instantiate a SETableRow from an IWebElement with the tag name "tr"
         /// </summary>
         /// <param name="element"></param>
-        public TableRow(IWebElement element) : base(element)
+        public SETableRow(IWebElement element) : base(element)
         {
             string tagName = element.TagName;
             if (null == tagName || !"tr".Equals(tagName.ToLower()))
@@ -37,3 +35,4 @@ using OpenQA.Selenium.Remote;
         }
         #endregion
     }
+}

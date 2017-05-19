@@ -9,7 +9,7 @@ using OpenQA.Selenium.Remote;
 /// <summary>
 /// Base class for all page elements with basic properties
 /// </summary>
-public class P2BaseElement : IWebElement
+public class BaseElement : IWebElement
 {
     #region public properties
     /// <summary>
@@ -19,8 +19,7 @@ public class P2BaseElement : IWebElement
     {
         get
         {
-            if (this.element == null && this.driver != null)
-                this.element = this.awaitElement(By.TagName("body"));
+            this.checkElement();
             return this.element.Text;
         }
     }
@@ -31,45 +30,41 @@ public class P2BaseElement : IWebElement
     {
         get
         {
-            if (this.element == null && this.driver != null)
-                this.element = this.awaitElement(By.TagName("body"));
+            this.checkElement();
             return this.element.GetAttribute("innerHtml");
         }
     }
     /// <summary>
     /// Returns a list of all tables within the element
     /// </summary>
-    public List<P2Table> Tables
+    public List<Table> Tables
     {
         get
         {
-            if (this.element == null && this.driver != null)
-                this.element = this.awaitElement(By.TagName("body"));
-            return this.element.FindElements(By.TagName("table")).Select(x => new P2Table(x)).ToList();
+            this.checkElement();
+            return this.element.FindElements(By.TagName("table")).Select(x => new Table(x)).ToList();
         }
     }
     /// <summary>
     /// Returns a list of all spans located within the element
     /// </summary>
-    public List<P2BaseElement> Spans
+    public List<BaseElement> Spans
     {
         get
         {
-            if (this.element == null && this.driver != null)
-                this.element = this.awaitElement(By.TagName("body"));
-            return this.element.FindElements(By.TagName("span")).Select(x => new P2BaseElement(x)).ToList();
+            this.checkElement();
+            return this.element.FindElements(By.TagName("span")).Select(x => new BaseElement(x)).ToList();
         }
     }
     /// <summary>
     /// Returns a list of all IWebElement Links within the element
     /// </summary>
-    public List<P2BaseElement> Links
+    public List<BaseElement> Links
     {
         get
         {
-            if (this.element == null && this.driver != null)
-                this.element = this.awaitElement(By.TagName("body"));
-            return this.element.FindElements(By.TagName("a")).Select(x => new P2BaseElement(x)).ToList();
+            this.checkElement();
+            return this.element.FindElements(By.TagName("a")).Select(x => new BaseElement(x)).ToList();
         }
     }
     /// <summary>
@@ -79,8 +74,7 @@ public class P2BaseElement : IWebElement
     {
         get
         {
-            if (this.element == null && this.driver != null)
-                this.element = this.awaitElement(By.TagName("body"));
+            this.checkElement();
             return this.element.FindElements(By.TagName("a")).Select(x => x.GetAttribute("href")).ToList();
         }
     }
@@ -91,8 +85,7 @@ public class P2BaseElement : IWebElement
     {
         get
         {
-            if (this.element == null && this.driver != null)
-                this.element = this.awaitElement(By.TagName("body"));
+            this.checkElement();
             return this.element.TagName;
         }
     }
@@ -101,8 +94,7 @@ public class P2BaseElement : IWebElement
     {
         get
         {
-            if (this.element == null && this.driver != null)
-                this.element = this.awaitElement(By.TagName("body"));
+            this.checkElement();
             return this.element.Enabled;
         }
     }
@@ -111,8 +103,7 @@ public class P2BaseElement : IWebElement
     {
         get
         {
-            if (this.element == null && this.driver != null)
-                this.element = this.awaitElement(By.TagName("body"));
+            this.checkElement();
             return this.element.Selected;
         }
     }
@@ -121,8 +112,7 @@ public class P2BaseElement : IWebElement
     {
         get
         {
-            if (this.element == null && this.driver != null)
-                this.element = this.awaitElement(By.TagName("body"));
+            this.checkElement();
             return this.element.Location;
         }
     }
@@ -131,8 +121,7 @@ public class P2BaseElement : IWebElement
     {
         get
         {
-            if (this.element == null && this.driver != null)
-                this.element = this.awaitElement(By.TagName("body"));
+            this.checkElement();
             return this.element.Size;
         }
     }
@@ -141,8 +130,7 @@ public class P2BaseElement : IWebElement
     {
         get
         {
-            if (this.element == null && this.driver != null)
-                this.element = this.awaitElement(By.TagName("body"));
+            this.checkElement();
             return this.element.Displayed;
         }
     }
@@ -150,26 +138,26 @@ public class P2BaseElement : IWebElement
     #region private properties
     protected internal IWebElement element { get; private set; }
 
-    private P2ChromeDriver driver;
+    private ChromeDriver driver;
     #endregion
     #region constructors
     /// <summary>
-    /// Instantiate a P2BaseElement and bind it to the IWebElement
+    /// Instantiate a BaseElement and bind it to the IWebElement
     /// </summary>
     /// <param name="element">
     /// The IWebElement for the class to be bound to
     /// </param>
-    public P2BaseElement(IWebElement element)
+    public BaseElement(IWebElement element)
     {
         this.element = element;
     }
     /// <summary>
-    /// Instantiate a P2BaseElement and bind it to the body of the web page
+    /// Instantiate a BaseElement and bind it to the body of the web page
     /// </summary>
     /// <param name="driver">
-    /// The P2ChromeDriver to query web page elements
+    /// The ChromeDriver to query web page elements
     /// </param>
-    public P2BaseElement(P2ChromeDriver driver)
+    public BaseElement(ChromeDriver driver)
     {
         this.driver = driver;
     }
@@ -178,40 +166,35 @@ public class P2BaseElement : IWebElement
 
     public IWebElement FindElement(By selector)
     {
-        if (this.element == null && this.driver != null)
-            this.element = this.awaitElement(By.TagName("body"));
+        this.checkElement();
         return this.element.FindElement(selector);
     }
 
 
     ReadOnlyCollection<IWebElement> ISearchContext.FindElements(By by)
     {
-        if (this.element == null && this.driver != null)
-            this.element = this.awaitElement(By.TagName("body"));
+        this.checkElement();
         return this.element.FindElements(by);
     }
 
 
     public void SendKeys(string keys)
     {
-        if (this.element == null && this.driver != null)
-            this.element = this.awaitElement(By.TagName("body"));
+        this.checkElement();
         this.element.SendKeys(keys);
     }
 
 
     public void Click()
     {
-        if (this.element == null && this.driver != null)
-            this.element = this.awaitElement(By.TagName("body"));
+        this.checkElement();
         this.element.Click();
     }
 
 
     public void DoubleClick()
     {
-        if (this.element == null && this.driver != null)
-            this.element = this.awaitElement(By.TagName("body"));
+        this.checkElement();
         this.element.Click();
         this.element.Click();
     }
@@ -219,36 +202,30 @@ public class P2BaseElement : IWebElement
 
     public void Clear()
     {
-        if (this.element == null && this.driver != null)
-            this.element = this.awaitElement(By.TagName("body"));
+        this.checkElement();
         this.element.Clear();
     }
 
 
     public void Submit()
     {
-        if (this.element == null && this.driver != null)
-            this.element = this.awaitElement(By.TagName("body"));
+        this.checkElement();
         this.element.Submit();
     }
 
 
     public string GetAttribute(string attributeName)
     {
-        if (this.element == null && this.driver != null)
-            this.element = this.awaitElement(By.TagName("body"));
+        this.checkElement();
         return this.element.GetAttribute(attributeName);
     }
 
 
     public string GetCssValue(string propertyName)
     {
-        if (this.element == null && this.driver != null)
-            this.element = this.awaitElement(By.TagName("body"));
+        this.checkElement();
         return this.element.GetCssValue(propertyName);
     }
-
-
     #endregion
     #region private methods
     private IWebElement awaitElement(By selector)
@@ -268,6 +245,14 @@ public class P2BaseElement : IWebElement
             wait.Until(ExpectedConditions.VisibilityOfAllElementsLocatedBy(selector));
         }
         return this.driver.FindElement(selector);
+    }
+
+    private void checkElement()
+    {
+        if (this.element == null && this.driver != null)
+            this.element = this.awaitElement(By.TagName("body"));
+        else if (this.element == null && this.driver == null)
+            throw new ArgumentException("You cannot instantiate a BaseElement without a ChromeDriver, or IWebElement");
     }
     #endregion
 }

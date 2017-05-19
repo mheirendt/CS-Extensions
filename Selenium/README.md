@@ -20,11 +20,11 @@
     This subclass simplifies this workflow by ten fold. Here is how you would accomplish the same 
     thing five different ways:
     ```CS
-    using (ExtendedChromeDriver driver = new ExtendedChromeDriver())
+    using (SEChromeDriver driver = new SEChromeDriver())
     {
-      Table table = driver.Tables[0];
-      List<TableRow> tableRows = table.Rows;
-      List<TableCells> tableCells = tableRows.Cells;
+      SETable table = driver.Tables[0];
+      List<SETableRow> tableRows = table.Rows;
+      List<SETableCells> tableCells = tableRows.Cells;
       string text = table.Rows[0].Cells[0].Text;
       string html = table.Rows[0].Cells[0].Html;
     }
@@ -42,17 +42,17 @@
   
     Here is how you would accomplish the same thing with the subclass:
     ```CS
-    using (ExtendedChromeDriver driver = new ExtendedChromeDriver())
+    using (SEChromeDriver driver = new SEChromeDriver())
     {
-      List<Table> tables = driver.Tables;
+      List<SETable> tables = driver.Tables;
     }
     ```
   
     Or another way:
     ```CS
-    using (ExtendedChromeDriver = new ExtendedChromeDriver())
+    using (SEChromeDriver = new SEChromeDriver())
     {
-      List<Table> tables = driver.AwaitElements(By.TagName("table"));
+      List<SETable> tables = driver.AwaitElements(By.TagName("table"));
     }
     ```
   
@@ -70,7 +70,7 @@
     ```
     The implementation is much more simple with ExtendedChromeDriver:
     ```CS
-    using (ExtendedChromeDriver driver = new ExtendedChromeDriver())
+    using SEChromeDriver driver = new SEChromeDriver())
     {
       driver.AwaitClick(By.Id("idOfTheButtonOrLink"));
     }
@@ -87,6 +87,6 @@
     { ....
     ```
     
-    The ExtendedChromeDriver does this for you upon instantiation with no need to pass ChromeOptions
+    The SEChromeDriver does this for you upon instantiation with no need to pass ChromeOptions
     as a parameter.
   

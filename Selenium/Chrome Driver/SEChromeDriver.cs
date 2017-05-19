@@ -1,6 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
+using System;
 using System.Linq;
+using System.Collections.Generic;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Chrome;
 using OpenQA.Selenium.Support.UI;
@@ -75,7 +75,6 @@ namespace Tobin.EFD.Server.BusinessLogic.Websites
             }
             catch (WebDriverTimeoutException)
             {
-                Log.Debug("Web driver timed out while waiting 30 seconds for the web page to load, refreshing page and trying again");
                 this.Url = "";
                 this.Url = url;
                 WebDriverWait wait = new WebDriverWait(this, new TimeSpan(30 * TimeSpan.TicksPerSecond));
@@ -100,7 +99,6 @@ namespace Tobin.EFD.Server.BusinessLogic.Websites
             }
             catch (WebDriverTimeoutException)
             {
-                Log.Debug("Web driver timed out while waiting 10 seconds for element to become available, reloading the page and trying again");
                 string url = this.Url;
                 this.Url = "";
                 this.GoToUrl(url);
@@ -127,7 +125,6 @@ namespace Tobin.EFD.Server.BusinessLogic.Websites
             }
             catch (WebDriverTimeoutException)
             {
-                Log.Debug("Web driver timed out while waiting 10 seconds for elements to become available, reloading the page and trying again");
                 string url = this.Url;
                 this.Url = "";
                 this.GoToUrl(url);

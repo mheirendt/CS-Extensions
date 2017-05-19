@@ -249,7 +249,6 @@ namespace Tobin.EFD.Server.BusinessLogic.Websites
             }
             catch (WebDriverTimeoutException)
             {
-                Log.Debug("Web driver timed out while waiting 10 seconds for element to become available, reloading the page and trying again");
                 string url = this.driver.Url;
                 this.driver.Url = "";
                 this.driver.GoToUrl(url);

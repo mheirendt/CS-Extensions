@@ -49,6 +49,7 @@ namespace Tobin.EFD.Server.BusinessLogic.Websites
             if (null == tagName || !"tr".Equals(tagName.ToLower()))
                 throw new UnexpectedTagNameException("tr", tagName);
         }
+        public SETableRow() : base() { }
         #endregion
     }
 }

@@ -173,6 +173,8 @@ namespace Tobin.EFD.Server.BusinessLogic.Websites
         {
             this.driver = driver;
         }
+
+        public SEBaseElement() { }
         #endregion
         #region public methods
 

@@ -15,6 +15,7 @@ namespace Tobin.EFD.Server.BusinessLogic.Websites
             if (null == tagName || !"span".Equals(tagName.ToLower()))
                 throw new UnexpectedTagNameException("span", tagName);
         }
+        public SESpan() : base() { }
         #endregion
     }
 }

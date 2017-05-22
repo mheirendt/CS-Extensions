@@ -15,6 +15,7 @@ namespace Tobin.EFD.Server.BusinessLogic.Websites
             if (null == tagName || !"div".Equals(tagName.ToLower()))
                 throw new UnexpectedTagNameException("div", tagName);
         }
+        public SEDiv() : base() { }
         #endregion
     }
 }

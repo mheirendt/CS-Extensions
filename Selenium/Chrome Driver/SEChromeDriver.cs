@@ -110,6 +110,34 @@ namespace Tobin.EFD.Server.BusinessLogic.Websites
 
 
         /// <summary>
+        /// Create an explicit wait for the element to become available and instantiate the time of element desired
+        /// </summary>
+        /// <typeparam name="SEType"></typeparam>
+        /// <param name="selector">
+        /// A Selenium By selector to query web elements from the page
+        /// </param>
+        /// <returns></returns>
+        public virtual SEType AwaitElement<SEType>(By selector) where SEType : new()
+        {
+            try
+            {
+                WebDriverWait wait = new WebDriverWait(this, new TimeSpan(10 * TimeSpan.TicksPerSecond));
+                wait.Until(ExpectedConditions.VisibilityOfAllElementsLocatedBy(selector));
+            }
+            catch (WebDriverTimeoutException)
+            {
+                Log.Debug("Web driver timed out while waiting 10 seconds for element to become available, reloading the page and trying again");
+                string url = this.Url;
+                this.Url = "";
+                this.GoToUrl(url);
+                WebDriverWait wait = new WebDriverWait(this, new TimeSpan(30 * TimeSpan.TicksPerSecond));
+                wait.Until(ExpectedConditions.VisibilityOfAllElementsLocatedBy(selector));
+            }
+            return (SEType)Activator.CreateInstance(typeof(SEType), this.FindElement(selector));
+        }
+
+
+        /// <summary>
         /// Create an explicit wait for the elements to become available
         /// </summary>
         /// <param name="selector">
@@ -132,6 +160,34 @@ namespace Tobin.EFD.Server.BusinessLogic.Websites
                 wait.Until(ExpectedConditions.VisibilityOfAllElementsLocatedBy(selector));
             }
             return this.FindElements(selector).Select(x => new SEBaseElement(x)).ToList();
+        }
+
+
+        /// <summary>
+        /// Create an explicit wait for the elements to become available
+        /// </summary>
+        /// <typeparam name="SEType"></typeparam>
+        /// <param name="selector">
+        /// A Selenium By selector to query web elements from the page
+        /// </param>
+        /// <returns></returns>
+        public virtual List<SEType> AwaitElements<SEType>(By selector) where SEType : new()
+        {
+            try
+            {
+                WebDriverWait wait = new WebDriverWait(this, new TimeSpan(10 * TimeSpan.TicksPerSecond));
+                wait.Until(ExpectedConditions.VisibilityOfAllElementsLocatedBy(selector));
+            }
+            catch (WebDriverTimeoutException)
+            {
+                Log.Debug("Web driver timed out while waiting 10 seconds for elements to become available, reloading the page and trying again");
+                string url = this.Url;
+                this.Url = "";
+                this.GoToUrl(url);
+                WebDriverWait wait = new WebDriverWait(this, new TimeSpan(30 * TimeSpan.TicksPerSecond));
+                wait.Until(ExpectedConditions.VisibilityOfAllElementsLocatedBy(selector));
+            }
+            return this.FindElements(selector).Select(x => (SEType)Activator.CreateInstance(typeof(SEType), x)).ToList();
         }
 
 

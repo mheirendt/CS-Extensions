@@ -1,4 +1,4 @@
-<b>Subclasses and Helper methods for [Selenium](http://docs.seleniumhq.org)</b>
+  <b>Subclasses and Helper methods for [Selenium](http://docs.seleniumhq.org)</b>
 
 * <b>Chrome Driver</b>
 
@@ -15,21 +15,21 @@
     }
     ```
   * <b>Iterating through tables</b>
-  ```CS
-  uisng (SEChromeDriver driver = new SEChromeDriver())
-  {
-    SETable table = driver.Document.Tables.FindByText("Results");
-    SECollection<SETableRow> tableRows = table.TableRows;
-    foreach (SETableRow tableRow in tableRows)
+    ```CS
+    uisng (SEChromeDriver driver = new SEChromeDriver())
     {
-      SECollection<SETableCell> tableCells = tableRow.TableCells;
-      foreach(SETableCEll tableCell in tableCells)
+      SETable table = driver.Document.Tables.FindByText("Results");
+      SECollection<SETableRow> tableRows = table.TableRows;
+      foreach (SETableRow tableRow in tableRows)
       {
-        ...
+        SECollection<SETableCell> tableCells = tableRow.TableCells;
+        foreach(SETableCEll tableCell in tableCells)
+        {
+         ...
+        }
       }
     }
-  }
-  ```
+    ```
   * <b>Waiting For an element to become available</b>
     ```CS
     using (SEChromeDriver driver = new SEChromeDriver())
@@ -71,10 +71,10 @@
     ```
 
   * <b>You can also search by regex if you are not sure exactly what the text will be</b>
-  ```CS
-  using (SEChromeDriver driver = new SEChromeDriver())
-  {
-    Regex divRegex = new Regex(@"[A-Za-z]{2,8}\d+");
-    SEDiv div = driver.Document.Divs.FindByText(divRegex);
-  }
-  ```
+    ```CS
+    using (SEChromeDriver driver = new SEChromeDriver())
+    {
+      Regex divRegex = new Regex(@"[A-Za-z]{2,8}\d+");
+      SEDiv div = driver.Document.Divs.FindByText(divRegex);
+    }
+    ```

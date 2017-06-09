@@ -3,22 +3,7 @@
 * <b>Chrome Driver</b>
 
   Simplifies the code you need to write to be able to test or scrape web pages.
-  * With the Selenium remote web driver, in order to iterate through the rows of each HTML table,
-    you would need to do something like this:
-    ```CS
-    using (ChromeDriver driver = new ChromeDriver())
-    {
-      IReadOnlyCollection<IWebElement> tableRows = driver.FindElement(By.TagName("table))
-        .FindElements(By.TagName("tr"));
-      foreach (IWebElement row in tableRows)
-      {
-        IReadOnlyCollection<IWebElement> tableCells = row.FindElements(By.TagName("td"));
-      }
-    }
-    ```
-  
-    This subclass simplifies this workflow by ten fold. Here is how you would accomplish the same 
-    thing five different ways:
+  * <b>Iterating through tables</b>
     ```CS
     using (SEChromeDriver driver = new SEChromeDriver())
     {
@@ -29,18 +14,7 @@
       string html = table.Rows[0].Cells[0].Html;
     }
     ```
-  * I also noticed an annoying issue with Selenium is that there is no helper method for waiting for the 
-    page, or an element to load. Here is what you would have to do to wait for an element to appear in the web page:
-    ```CS
-    using (ChromeDriver driver = new ChromeDriver())
-    {
-      WebDriverWait wait = new WebDriverWait(this, new TimeSpan(30 * TimeSpan.TicksPerSecond));
-      wait.Until(ExpectedConditions.PresenceOfAllElementsLocatedBy(By.TagName("table")));
-      List<Table> tables = driver.FindElements(By.TagName("table")).ToList();
-    }
-    ```
-  
-    Here is how you would accomplish the same thing with the subclass:
+  * Waiting For an element to become available
     ```CS
     using (SEChromeDriver driver = new SEChromeDriver())
     {
@@ -56,19 +30,7 @@
     }
     ```
   
-  * Same goes for clicking on an element. Sometimes with Selenium, an element will be located 
-    on the page, but it will not be clickable, and will throw an exception.
-    Here is how you would normally have to handle the situation:
-    ```CS
-    using (ChromeDriver driver = new ChromeDriver())
-    {
-      WebDriverWait wait = new WebDriverWait(this, new TimeSpan(30 * TimeSpan.TicksPerSecond));
-      wait.Until(ExpectedConditions.ElementToBeClickable(By.Id("idOfTheButtonOrLink")));
-      IWebElement element = driver.FindElement(By.Id("idOfTheButtonOrLink")));
-      element.Click();
-    }
-    ```
-    The implementation is much more simple with ExtendedChromeDriver:
+  * Waiting for an element to be clickable
     ```CS
     using SEChromeDriver driver = new SEChromeDriver())
     {
@@ -76,17 +38,27 @@
     }
     ```
     
-  * Automating the testing of websites / scraping data occasionally requires that you download
-    images / documents instead of opening them in the defaut browser previewer.
-    Here is how you would have to configure the driver each time you create it:
+  * Searching for elements by text
     ```CS
-    ChromeOptions options = new ChromeOptions()
-    options.AddUserProfilePreference("plugins.always_open_pdf_externally", true);
-    
-    using (ChromeDriver driver = new ChromeDriver(options))
-    { ....
+    using (SEChromeDriver driver = new SEChromeDriver())
+    {
+      SEInput input = driver.Document.Inputs.FindByText("submit");
+    }
     ```
     
-    The SEChromeDriver does this for you upon instantiation with no need to pass ChromeOptions
-    as a parameter.
-  
+  * Searching for elments by alt tag
+    ```CS
+    using (SEChromeDriver driver = new SEChromeDriver())
+    {
+      SEImage image = driver.Document.Images.FindByAlt("next");
+    }
+    ```
+
+  * You can also search by regex if you are not sure exactly what the text will be
+  ```CS
+  using (SEChromeDriver driver = new SEChromeDriver())
+  {
+    Regex divRegex = new Regex(@"[A-Za-z]{2,8}\d+");
+    SEDiv div = driver.Document.Divs.FindByText(divRegex);
+  }
+  ```

@@ -3,7 +3,7 @@
 * <b>Chrome Driver</b>
 
   Simplifies the code you need to write to be able to test or scrape web pages.
-  * <b>Iterating through tables</b>
+  * <b>Finding text stored in tables</b>
     ```CS
     using (SEChromeDriver driver = new SEChromeDriver())
     {
@@ -14,7 +14,23 @@
       string html = table.Rows[0].Cells[0].Html;
     }
     ```
-  * Waiting For an element to become available
+  * <b>Iterating through tables</b>
+  ```CS
+  uisng (SEChromeDriver driver = new SEChromeDriver())
+  {
+    SETable table = driver.Document.Tables.FindByText("Results");
+    SECollection<SETableRow> tableRows = table.TableRows;
+    foreach (SETableRow tableRow in tableRows)
+    {
+      SECollection<SETableCell> tableCells = tableRow.TableCells;
+      foreach(SETableCEll tableCell in tableCells)
+      {
+        ...
+      }
+    }
+  }
+  ```
+  * <b>Waiting For an element to become available</b>
     ```CS
     using (SEChromeDriver driver = new SEChromeDriver())
     {
@@ -30,7 +46,7 @@
     }
     ```
   
-  * Waiting for an element to be clickable
+  * <b>Waiting for an element to be clickable</b>
     ```CS
     using SEChromeDriver driver = new SEChromeDriver())
     {
@@ -38,7 +54,7 @@
     }
     ```
     
-  * Searching for elements by text
+  * <b>Searching for elements by text</b>
     ```CS
     using (SEChromeDriver driver = new SEChromeDriver())
     {
@@ -46,7 +62,7 @@
     }
     ```
     
-  * Searching for elments by alt tag
+  * <b>Searching for elments by alt tag</b>
     ```CS
     using (SEChromeDriver driver = new SEChromeDriver())
     {
@@ -54,7 +70,7 @@
     }
     ```
 
-  * You can also search by regex if you are not sure exactly what the text will be
+  * <b>You can also search by regex if you are not sure exactly what the text will be</b>
   ```CS
   using (SEChromeDriver driver = new SEChromeDriver())
   {
